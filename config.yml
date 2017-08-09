@@ -1,0 +1,19 @@
+timer: 120
+#发消息的间隔，单位为秒
+Order:
+  - 'example'
+  - 'example2'
+#消息的顺序，插件将根据间隔从上往下播报
+Messages:
+  example:
+    - '&a&l&m========================'
+    - '&b欢迎使用BungeeAnnoncer!'
+    - '&a&l&m========================'
+  example2:
+    - 'Welcome to use BungeeAnnoncer!'
+    - 'This is a second-row message!'
+#配置消息:
+# 消息名:
+#   - '内容 第一行'
+#   - '内容 第二行'
+#编辑完后记得在order中添加顺序，否则不会启用
