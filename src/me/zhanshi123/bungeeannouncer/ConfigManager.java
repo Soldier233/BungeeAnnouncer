@@ -18,6 +18,11 @@ public class ConfigManager {
 	{
 		return cm;
 	}
+	public void setConfig(Configuration config)
+	{
+		this.config=config;
+		cm=this;
+	}
 	public List<Announce> getAnnounces()
 	{
 		List<Announce> as=new ArrayList<Announce>();

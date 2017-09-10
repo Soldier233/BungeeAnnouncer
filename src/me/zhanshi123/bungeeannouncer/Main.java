@@ -24,18 +24,61 @@ public class Main extends Plugin
 	List<String> order=null;
 	int timer=120;
 	
+	private static Main instance=null;
+	
+	public static Main getInstance()
+	{
+		return instance;
+	}
+	
+	public void cancelTasks()
+	{
+		getProxy().getScheduler().cancel(instance);
+	}
+	
 	@Override
 	public void onEnable()
 	{
 		getLogger().info("§aBC公告正在加载中");
 		loadConfig();
+		readConfig();
+		registerTasks();
+		instance=this;
+		new Metrics(this);
+		getProxy().getPluginManager().registerCommand(this, new Commands());
+		getLogger().info("§a加载了§c"+announces.size()+"§a个消息，启用了§c"+order.size()+"§a个消息");
+		getLogger().info("§aBC公告已加载完成!");
+	}
+	
+	public void readConfig()
+	{
 		announces=ConfigManager.getInstance().getAnnounces();
 		order=ConfigManager.getInstance().getOrder();
 		timer=ConfigManager.getInstance().getTimer();
-		registerTasks();
-		new Metrics(this);
-		getLogger().info("§a加载了§c"+announces.size()+"§a个消息，启用了§c"+order.size()+"§a个消息");
-		getLogger().info("§aBC公告已加载完成!");
+		current=0;
+	}
+	
+	public void reloadConfig()
+	{
+        if (!getDataFolder().exists())
+            getDataFolder().mkdir();
+
+        File file = new File(getDataFolder(), "config.yml");
+
+        if (!file.exists()) {
+            try (InputStream in = getResourceAsStream("config.yml")) {
+                Files.copy(in, file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Configuration config=null;
+		try {
+			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ConfigManager.getInstance().setConfig(config);
 	}
 	
 	public void loadConfig()
