@@ -3,15 +3,19 @@ timer: 120
 Order:
   - 'example'
   - 'example2'
+  - 'example3'
 #消息的顺序，插件将根据间隔从上往下播报
 Messages:
   example:
     - '&a&l&m========================'
-    - '&b欢迎使用BungeeAnnoncer!'
+    - '&b欢迎使用BungeeAnnouncer!'
     - '&a&l&m========================'
   example2:
-    - 'Welcome to use BungeeAnnoncer!'
+    - 'Welcome to use BungeeAnnouncer!'
     - 'This is a second-row message!'
+  example3:
+    - '作者博客: http://www.zhanshi123.me 欢迎参观'
+    #如果需要添加网页链接 请尽量在网址两边空格 以免程序识别错误
 #配置消息:
 # 消息名:
 #   - '内容 第一行'
