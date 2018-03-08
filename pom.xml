@@ -6,7 +6,7 @@
 
     <groupId>me.zhanshi123</groupId>
     <artifactId>BungeeAnnouncer</artifactId>
-    <version>1.2</version>
+    <version>1.1</version>
     <build>
         <plugins>
             <plugin>
